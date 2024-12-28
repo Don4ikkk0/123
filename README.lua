@@ -107,19 +107,23 @@ function notif(title, text, duration)
         Duration = duration;
     })
 end
-
 -- Snowflake AutoFarm
 local path = workspace:WaitForChild("Particles"):WaitForChild("Snowflakes")
 local lplr = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
 local collecttick = tick()
 
-chatmsg("SnowWare Activated! Optimized with delay after movement.", Color3.fromRGB(107, 170, 253))
-notif("SnowWare", "Optimized AutoFarm active", 5)
+chatmsg("SNOWFLAKES ACTIVATED! Waiting for snowflakes TG: @DKdon4ik.", Color3.fromRGB(107, 170, 253))
+notif("ALPHA FARM", "AUTOFARM SNOWFLAKE TG: @DKdon4ik", 5)
 
 function getsnowflake()
     local snowflakes = path:GetChildren()
-    if #snowflakes > 0 then
-        return snowflakes[math.random(1, #snowflakes)]
+    for _, snowflake in ipairs(snowflakes) do
+        local ray = Ray.new(snowflake.Position, Vector3.new(0, -10, 0))
+        local hit, position = workspace:FindPartOnRay(ray)
+
+        if hit then
+            return snowflake
+        end
     end
     return nil
 end
@@ -138,9 +142,9 @@ while true do
         lplr.HumanoidRootPart.Velocity = Vector3.zero
 
         repeat task.wait(0.05) until (tick() - collecttick > 0.5) 
-        task.wait(5)
+        task.wait(2.5)
     else
-        notif("SnowWare", "No Snowflakes Found, retrying...", 2)
+        notif("ALPHA FARM", "FINDING SNOWFLAKE TG @DKdon4ik.", 2)
+task.wait(0.5)
     end
 end
-
